@@ -45,7 +45,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def template():
-    return render_template('index.html',x= x,y = y, z=z , k=k)
+    return render_template('index.html')
 
 @app.route('/mapa')
 def mapa():
@@ -53,13 +53,14 @@ def mapa():
 
 @app.route('/grafi')
 def grafi():
-    return render_template('grafi.html',latlon=latlon)
+    return render_template('grafi.html',x= x,y = y, z=z , k=k)
 
-@app.route('/json', methods=['GET', 'POST'])
+"""@app.route('/json', methods=['GET', 'POST'])
 def parse_request():
     data = request.data 
     dataDict = json.loads(data)
     return render_template('grafi.html')
+"""
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000,host='127.0.0.1')

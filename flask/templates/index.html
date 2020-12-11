@@ -10,107 +10,6 @@
   <link href="http://unpkg.com/leaflet@1.0.2/dist/leaflet.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script>
-    $(document).ready(Principal)
-
-    function Principal() {
-      $("#boton1").click(Grafico1);
-      $("#boton2").click(Grafico2);
-      $("#boton3").click(Grafico3);
-      $("#boton4").click(Grafico4);
-    }
-
-    function Grafico1() {
-
-
-      var graf = new CanvasJS.Chart('grafico', {
-        axisY: {
-          title: "PM2.5"
-        },
-        axisX: {
-          title: "Value"
-        },
-        data: [{
-          color: "red",
-          type: "line",
-          dataPoints: []
-        }]
-      });
-      for (i = 0 ;i<({{x}}.length) ; i++) {
-                  graf.options.data[0].dataPoints.push({y: {{x}}[i]});
-                }
-          graf.render();
-    }
-   
-
-    function Grafico2() {
-
-
-var graf = new CanvasJS.Chart('grafico', {
-  axisY: {
-    title: "PM10"
-  },
-  axisX: {
-    title: "Value"
-  },
-  data: [{
-    color: "red",
-    type: "line",
-    dataPoints: []
-  }]
-});
-for (i = 0 ;i<({{y}}.length) ; i++) {
-            graf.options.data[0].dataPoints.push({y: {{y}}[i]});
-          }
-    graf.render();
-}
-
-
-function Grafico3() {
-
-
-var graf = new CanvasJS.Chart('grafico', {
-  axisY: {
-    title: "D03"
-  },
-  axisX: {
-    title: "Value"
-  },
-  data: [{
-    color: "red",
-    type: "line",
-    dataPoints: []
-  }]
-});
-for (i = 0 ;i<({{z}}.length) ; i++) {
-            graf.options.data[0].dataPoints.push({y: {{z}}[i]});
-          }
-    graf.render();
-}
-
-
-function Grafico4() {
-
-
-var graf = new CanvasJS.Chart('grafico', {
-  axisY: {
-    title: "Velocity"
-  },
-  axisX: {
-    title: "Value"
-  },
-  data: [{
-    color: "red",
-    type: "line",
-    dataPoints: []
-  }]
-});
-for (i = 0 ;i<({{k}}.length) ; i++) {
-            graf.options.data[0].dataPoints.push({y: {{k}}[i]});
-          }
-    graf.render();
-}
-
-
   </script>
   <style>
     body {
@@ -121,7 +20,7 @@ for (i = 0 ;i<({{k}}.length) ; i++) {
       height: 600px;
       width: 900px;
       margin-left: 10px;
-      background-image: url('/static/aire2.png');
+      background-image: url('/static/auto.jpg');
 
     }
 
@@ -153,29 +52,17 @@ for (i = 0 ;i<({{k}}.length) ; i++) {
   <div class="container-fluid">
 
 
-
-
     <div class="col-10  border container  d-flex align-items-center" style="background-color: #91b66fd8 ;">
-      <h1>Calidad Aire</h1>
-
-
+      <h1 style="color: aliceblue;">BIENVENIDOS!</h1>
       <div id="grafico" class="grafico  "> </div>
+      
 
-      <div class="align-self-center">
-        <button id="boton3">D03</button>
-        <br>
-        <button id="boton2">PM10</button>
-        <br>
-        <button id="boton1">PM2.5</button>
-        <br>
-        <button id="boton4">Velocity</button></div>
-    </div>
+
+      
+
+      
   </div>
   </div>
-
-
-
-
 </body>
 
 </html>
