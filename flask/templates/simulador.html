@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Calidad de Aire</title>
+  <meta charset="utf-8">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <link href="http://unpkg.com/leaflet@1.0.2/dist/leaflet.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script>
+      $("#cargar").click(function() {
+
+var image = new Image();
+
+var src = 'http://www.todopaisajes.com/Imagenes/paisaje-rural-del-campo.jpg'; //Esta es la variable que contiene la url de una imagen ejemplo, luego puedes poner la que quieras
+image.src = src;
+
+$('#image').append(image);
+});
+  </script>
+  <style>
+    body {
+      background-image: url('/static/aire3.jpg');
+    }
+
+    .grafico {
+      height: 500px;
+      width: 600px;
+      margin: 5px;
+      
+      
+
+    }
+    .grafico2 {
+      height: 400px;
+      width: 600px;
+      
+      background-image: url('/static/fotomapa.png');
+
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-sm  navbar-dark " style="background-color: #265c02 ;">
+    <a class="navbar-brand mb-0 h1" href="http://127.0.0.1:5000/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('mapa')}}">Mapa</a>
+          <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('grafi')}}">Grafico</a>
+          <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('simu')}}">Simulador</a>
+          <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('map')}}">Auto</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+
+
+    <div class="col-10  border container  d-flex align-items-center" style="background-color: #91b66fd8 ;">
+      <h3 style="color: aliceblue;">Simulador con modelo triangular</h3>
+      <div id="grafico2" class="grafico2  "> </div>
+      <div class="form-group bgdiv rounded">
+                            
+        <form  method="POST" action="{{url_for('simu2')}}">
+          Zona<input required type="text" name="zona" class="search-query">
+          <br>
+          TI<input required type="text" name="t1" class="search-query">
+          <br>
+         TF <input required type="text" name="t2" class="search-query">
+          <button type="submit">buscar</button>
+        </form>
+     
+</div>
+      <div id="grafico" class="grafico  " style="background-color: rgba(0, 255, 234, 0.466);"> 
+          <h3>Prediccion: {{Prediccion}}</h3>
+          <h3>Correcion: {{Correccion}}</h3>
+      </div>
+      
+
+
+      
+
+      
+  </div>
+  </div>
+</body>
+
+</html>

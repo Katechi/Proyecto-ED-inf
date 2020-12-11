@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=+, initial-scale=1.0">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Mapa</title>
+<script>
+
+
+$(document).ready(Principal)
+
+
+function Principal(){
+            $("#boton1").click(Mapa);
+          
+        }
+
+        
+            function Mapa(){ 
+            var lat = document.getElementById("lat").value;
+            
+            var lon = document.getElementById("lon").value;
+           
+            
+            var latf=parseFloat(lat);
+            var lonf=parseFloat(lon);
+            console.log(latf,lonf);
+            var map = L.map('map').setView([-38.732689,-72.645523], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([latf,lonf]).addTo(map)
+    .bindPopup('Latitud y Longitud !')
+    .openPopup();
+
+//var ruta = L.polyline([-38.732689,-72.645523], {color: 'green'});
+//ruta.addTo(map);
+var circle = L.circle([latf,lonf], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(map);
+
+//var polygon = L.polygon([]).addTo(mymap);
+
+            }
+        
+</script>
+<style>
+    #map { height: 400px; 
+        width: 1900px;
+        background-image: url('/static/mapa.png');
+        }
+        body {
+      background-image: url('/static/aire3.jpg');
+    }
+</style> 
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm  navbar-dark " style="background-color: #265c02 ;">
+        <a class="navbar-brand mb-0 h1" href="http://127.0.0.1:5000/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('mapa')}}">Mapa</a>
+              <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('grafi')}}">Grafico</a>
+              <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('simu')}}">Simulador</a>
+              <a class="nav-link navbar-brand mb-0 h2" href="{{url_for('map')}}">Auto</a>
+            </li>
+    
+          </ul>
+        </div>
+      </nav>
+
+
+     <div style="background-color: #91b66fd8; "> <h2 class="align-items-left">Localizador:</h2></div>
+	<div id="map" class="map"></div>
+    
+    
+  <div class="form-group bgdiv rounded">
+                            
+    <form  method="POST" action="{{url_for('map')}}">
+      ID AUTO<input required type="text" name="zona" class="search-query">
+      <br>
+      
+      <button type="submit">buscar</button>
+    </form>
+ 
+</div>
+</div>
+    <br>
+   <a class="btn btn-danger" href="/">Atras</a>
+   <a class="btn btn-success" href="/mapa">Reload</a>
+
+   
+</body>
+</html>
